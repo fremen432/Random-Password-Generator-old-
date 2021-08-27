@@ -11,10 +11,8 @@ var btnWorking = function() {
 };
 
 var checkValue = function() {
-  window.alert("your password will be " + (
-    localStorage.getItem("length") +
-    " characters in length!")
-    )
+  // window.alert(passLength + " " + passLower + " " + passUpper + " " + passNumeric + " and " + passSpecial);
+  window.alert(arraySpecial[9]);
 };
 
 // Button References
@@ -24,6 +22,18 @@ var btnGen = document.querySelector('#generate');
 var btnPrompt = document.querySelector('#prompt')
 var btnCheck = document.querySelector('#check');
 
+var passLength =  localStorage.getItem("length");
+var passLower =   localStorage.getItem("lowercase");
+var passUpper =   localStorage.getItem("uppercase");
+var passNumeric = localStorage.getItem("numeric");
+var passSpecial = localStorage.getItem("special");
+
+// Arrays
+
+var arrayLower =    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var arrayUpper =    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var arrayNumeric =  ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var arraySpecial =  ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '[', '{', ']', '}', '|', ';', ':', ',', '<', '.', '>', '/', '?', '`', '~'];
 
 // Assignment code here
 
@@ -55,9 +65,9 @@ var promptStart = function() {
 
     // Prompt 2: Include lowercase characters?
   function promptTwo() {
-    var passLower = confirm('Would you like your password to include lowercase characters?');
+    var lower = confirm('Would you like your password to include lowercase characters?');
 
-    if (passLower === true) {
+    if (lower === true) {
       alert('Your password WILL contain lowercase characters.');
       localStorage.setItem("lowercase", true);
 
@@ -70,9 +80,9 @@ var promptStart = function() {
 
     // Prompt 3: Include uppercase characters?
   function promptThree() {
-    var passUpper = confirm('Would you like your password to include uppercase characters?');
+    var upper = confirm('Would you like your password to include uppercase characters?');
     
-    if (passUpper === true) {
+    if (upper === true) {
       alert('Your password WILL contain uppercase characters.');
       localStorage.setItem("uppercase", true);
     } else {
@@ -83,8 +93,8 @@ var promptStart = function() {
   }
     // Prompt 4: Include numeric characters?
   function promptFour() {
-    var passNumeric = confirm('Would you like your password to include numeric characters?');
-      if (passNumeric === true) {
+    var numeric = confirm('Would you like your password to include numeric characters?');
+      if (numeric === true) {
         alert('Your password WILL contain numeric characters.');
         localStorage.setItem("numeric", true);
       } else {
@@ -95,9 +105,9 @@ var promptStart = function() {
   }
     // Prompt 5: Include special characters?
   function promptFive() {
-    var passSpecial = confirm('Would you like your password to include special characters?');
+    var special = confirm('Would you like your password to include special characters?');
     
-    if (passSpecial === true) {
+    if (special === true) {
       alert('Your password WILL contain special characters.');
       localStorage.setItem("special", true);
     } else {
@@ -108,9 +118,15 @@ var promptStart = function() {
   }
     // Prompt noGo: This prompt checks if the user inputed enough information to generate a random password.
   function noGo() {
-    // alert('this is the noGo function');
 
+    // alert('this is the noGo function');
+    // alert(passLength + " " + passLower + " " + passUpper + " " + passNumeric + " and " + passSpecial);
+    
     if (
+      // passLower === "false" &&
+      // passUpper === "false" &&
+      // passNumeric === "false" &&
+      // passSpecial === "false"
       localStorage.getItem("lowercase") === "false" &&
       localStorage.getItem("uppercase") === "false" &&
       localStorage.getItem("numeric") === "false" &&
@@ -125,27 +141,21 @@ var promptStart = function() {
 };
 
 
-
-
-  // Get references to the #generate element
-
-  var generateBtn = document.querySelector("#generate");
-
   // Write password to the #password input
 
   function writePassword() {
+
     var password = generatePassword();
+
+
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
-
   }
 
   // Add event listeners
 
-  // btnGen.addEventListener("click", writePassword);
-
-  btnGen.addEventListener("click", btnWorking);
+  btnGen.addEventListener("click", writePassword);
   
   btnPrompt.addEventListener("click", promptStart);
   btnCheck.addEventListener("click", checkValue);
