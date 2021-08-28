@@ -11,8 +11,8 @@ var btnWorking = function() {
 };
 
 var checkValue = function() {
-  // window.alert(passLength + " " + passLower + " " + passUpper + " " + passNumeric + " and " + passSpecial);
-  window.alert(arraySpecial[9]);
+  // passLowerBooleen;
+  console.log(passInfo.length);
 };
 
 // Button References
@@ -22,14 +22,38 @@ var btnGen = document.querySelector('#generate');
 var btnPrompt = document.querySelector('#prompt')
 var btnCheck = document.querySelector('#check');
 
-var passLength =  localStorage.getItem("length");
-var passLower =   localStorage.getItem("lowercase");
+// var passLengthString =  localStorage.getItem("length");
+var passLength = parseInt(localStorage.getItem("length"));
+
+var passLowerUndefined =   localStorage.getItem("lowercase");
+var passLowerTrue =        (JSON.parse(passLowerUndefined))
+var passLowerFalse =       (JSON.parse(passLowerUndefined))
+
+
 var passUpper =   localStorage.getItem("uppercase");
 var passNumeric = localStorage.getItem("numeric");
 var passSpecial = localStorage.getItem("special");
 
+
+
+var passLower = function () {
+  if (localStorage.getItem("lowercase") === "true")  (localStorage.getItem("lowercase") === true) {
+    var lowerValue = (JSON.parse() === true);
+  } else {
+    var lowerValue = (JSON.parse() === false);
+  }
+  console.log(lowerValue)
+};
+
+
+
+
+
+
+
 // Arrays
 
+var arrayEmpty =    []
 var arrayLower =    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var arrayUpper =    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var arrayNumeric =  ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -40,10 +64,10 @@ var arraySpecial =  ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+',
 var promptStart = function() {
 
     // Call promptOne to begin prompt cycle.
-  promptOne();
+  // promptTwo();
 
   // Prompt 1: How many characters in password? (between 8-128)
-  function promptOne() {
+  // function promptOne() {
       // Prompt the user with the first question.
     var length = prompt('How many characters would you like your password to be? Please select a value between 8 and 128.');
       // If user inputs a value inside range 8-128, then do the following:
@@ -75,7 +99,7 @@ var promptStart = function() {
       alert('Your password will NOT contain lowercase characters.');
       localStorage.setItem("lowercase", false);
     }
-    promptThree();
+    // promptThree();
   }
 
     // Prompt 3: Include uppercase characters?
@@ -143,19 +167,25 @@ var promptStart = function() {
 
   // Write password to the #password input
 
-  function writePassword() {
+function writePassword() {
+  alert("this is the writePassword function")
 
-    var password = generatePassword();
+}
 
 
-    var passwordText = document.querySelector("#password");
+  // function writePassword() {
 
-    passwordText.value = password;
-  }
+  //   var password = generatePassword();
+
+
+  //   var passwordText = document.querySelector("#password");
+
+  //   passwordText.value = password;
+  // }
 
   // Add event listeners
 
   btnGen.addEventListener("click", writePassword);
   
-  btnPrompt.addEventListener("click", promptStart);
+  btnPrompt.addEventListener("click", getPassLength());
   btnCheck.addEventListener("click", checkValue);
