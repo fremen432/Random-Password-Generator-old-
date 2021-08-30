@@ -13,4 +13,4 @@
 ![Password Generator - final screenshot](https://user-images.githubusercontent.com/87861603/131282745-13b067ce-1f0e-4439-b9d7-c50615d8868f.png)
 
 ## Live URL link
-https://fremen432.github.io/Password-Generator/
+https://fremen432.github.io/Random-Password-Generator/
